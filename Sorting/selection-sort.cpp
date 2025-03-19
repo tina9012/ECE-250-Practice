@@ -18,13 +18,15 @@ int main(){
     int n = 100;
 
     for(int i = 0; i < n - 1; i++){
-        for(int k = 0; k < n - i - 1; k++){
-            if(nums[k] > nums[k + 1]){
-                int temp = nums[k];
-                nums[k] = nums[k + 1];
-                nums[k + 1] = temp;
+        int currentMin = i;
+        for(int k = i + 1; k < n; k++){
+            if(nums[k] < nums[currentMin]){
+                currentMin = k;
             }
         }
+        int temp = nums[currentMin];
+        nums[currentMin] = nums[i];
+        nums[i] = temp;
     }
 
     for(int i = 0; i < n; i++){

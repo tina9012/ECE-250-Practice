@@ -17,14 +17,16 @@ int main(){
 
     int n = 100;
 
-    for(int i = 0; i < n - 1; i++){
-        for(int k = 0; k < n - i - 1; k++){
-            if(nums[k] > nums[k + 1]){
-                int temp = nums[k];
-                nums[k] = nums[k + 1];
-                nums[k + 1] = temp;
-            }
+    for(int i = 1; i < n; i++){
+        int key = nums[i]; //the current element we need to insert
+        int j = i - 1; //index for the sorted array 
+        
+        while(j >= 0 && nums[j] > key){
+            nums[j + 1] = nums[j]; //shift elements forward
+            j -= 1; 
         }
+        
+        nums[j + 1] = key; 
     }
 
     for(int i = 0; i < n; i++){
