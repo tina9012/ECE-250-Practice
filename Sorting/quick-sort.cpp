@@ -34,23 +34,21 @@
 	
 }*/
 
-void quickSort(int nums[], int start, int end){
+//this is the one where you keep selecting a pivot and sort the pivot every time
 
-    //base case, if we have 0 or 1 elements
+void quickSort(int nums[], int start, int end){
+    //waste of a stack call to sort a single element
     if(start >= end){
         return;
     }
-
-    int pivot = nums[end];
+    int pivot = nums[end]; //choose the final element
     int lo = start;
     int hi = end - 1; 
 
-
     while(lo <= hi){
 
-        //find position for lo that needs swap
         while(lo <= hi && nums[lo] <= pivot){
-            lo += 1; 
+            lo += 1;
         }
 
         while(lo <= hi && nums[hi] >= pivot){
@@ -60,18 +58,17 @@ void quickSort(int nums[], int start, int end){
         if(lo < hi){
             int temp = nums[hi];
             nums[hi] = nums[lo];
-            nums[lo] = temp;
+            nums[lo] = temp; 
         }
-
+        
     }
 
+    //swap pivot with lo (one past hi)
     int temp = nums[lo];
     nums[lo] = pivot;
     nums[end] = temp;
-
     quickSort(nums, start, lo - 1);
     quickSort(nums, lo + 1, end);
-    
 }
 
 int main(){

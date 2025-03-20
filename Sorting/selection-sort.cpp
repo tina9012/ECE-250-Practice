@@ -29,16 +29,16 @@ int main(){
         nums[i] = temp;
     }*/
 
+    //select the minimum element each time and swap with the front of unsorted list
     for(int i = 0; i < n - 1; i++){
-        int currentMin = i; 
+        int min = i;
         for(int k = i + 1; k < n; k++){
-            if(nums[k] < nums[currentMin]){
-                currentMin = k; 
+            if(nums[k] < nums[min]){
+                min = k; 
             }
         }
-
-        int temp = nums[currentMin];
-        nums[currentMin] = nums[i];
+        int temp = nums[min];
+        nums[min] = nums[i];
         nums[i] = temp;
     }
 

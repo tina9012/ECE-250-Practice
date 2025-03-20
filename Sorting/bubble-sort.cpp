@@ -27,13 +27,23 @@ int main(){
         }
     }*/
 
+
+
+
+
+
+
+
     //we sort from the end, find the largest element each time
     for(int i = 0; i < n - 1; i++){
+        //the last i elements are already sorted
         for(int k = 0; k < n - i - 1; k++){
+            //if out of order, swap
             if(nums[k + 1] < nums[k]){
+                //make a swap
                 int temp = nums[k + 1];
                 nums[k + 1] = nums[k];
-                nums[k] = temp; 
+                nums[k] = temp;
             }
         }
     }
