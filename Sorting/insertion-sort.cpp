@@ -17,7 +17,7 @@ int main(){
 
     int n = 100;
 
-    for(int i = 1; i < n; i++){
+    /*for(int i = 1; i < n; i++){
         int key = nums[i]; //the current element we need to insert
         int j = i - 1; //index for the sorted array 
         
@@ -27,6 +27,17 @@ int main(){
         }
         
         nums[j + 1] = key; 
+    }*/
+
+    for(int i = 1; i < n; i++){
+        int key = nums[i];
+        int k = i - 1; 
+        while(k >= 0 && nums[k] > key){
+            nums[k + 1] = nums[k];
+            k -= 1; 
+        }
+
+        nums[k + 1] = key; 
     }
 
     for(int i = 0; i < n; i++){

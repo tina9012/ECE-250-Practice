@@ -17,12 +17,23 @@ int main(){
 
     int n = 100;
 
-    for(int i = 0; i < n - 1; i++){
+    /*for(int i = 0; i < n - 1; i++){
         for(int k = 0; k < n - i - 1; k++){
             if(nums[k] > nums[k + 1]){
                 int temp = nums[k];
                 nums[k] = nums[k + 1];
                 nums[k + 1] = temp;
+            }
+        }
+    }*/
+
+    //we sort from the end, find the largest element each time
+    for(int i = 0; i < n - 1; i++){
+        for(int k = 0; k < n - i - 1; k++){
+            if(nums[k + 1] < nums[k]){
+                int temp = nums[k + 1];
+                nums[k + 1] = nums[k];
+                nums[k] = temp; 
             }
         }
     }

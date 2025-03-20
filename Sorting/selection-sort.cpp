@@ -17,13 +17,26 @@ int main(){
 
     int n = 100;
 
-    for(int i = 0; i < n - 1; i++){
+    /*for(int i = 0; i < n - 1; i++){
         int currentMin = i;
         for(int k = i + 1; k < n; k++){
             if(nums[k] < nums[currentMin]){
                 currentMin = k;
             }
         }
+        int temp = nums[currentMin];
+        nums[currentMin] = nums[i];
+        nums[i] = temp;
+    }*/
+
+    for(int i = 0; i < n - 1; i++){
+        int currentMin = i; 
+        for(int k = i + 1; k < n; k++){
+            if(nums[k] < nums[currentMin]){
+                currentMin = k; 
+            }
+        }
+
         int temp = nums[currentMin];
         nums[currentMin] = nums[i];
         nums[i] = temp;

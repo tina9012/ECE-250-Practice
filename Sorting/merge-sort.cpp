@@ -1,6 +1,6 @@
 #include <iostream> 
 
-void merge(int temp[], int nums[], int a, int b, int end){
+/*void merge(int temp[], int nums[], int a, int b, int end){
 	int originalA = a; 
 	int end2 = b - 1; 
 	int i = 0; 
@@ -47,6 +47,55 @@ void mergeSort(int temp[], int nums[], int start, int end){
         merge(temp, nums, start, mid + 1, end); 
     }
 	
+}*/
+
+
+void merge(int temp[], int nums[], int a, int b, int end){
+	int end2 = b - 1; 
+	int i = 0;
+	int n = (end - a) + 1; 
+	int aOG = a; 
+
+	while(a <= end2 && b <= end){
+		if(nums[a] < nums[b]){
+			temp[i] = nums[a];
+			a += 1; 
+		} else {
+			temp[i] = nums[b];
+			b += 1; 
+		}
+		i += 1; 
+	}
+
+	if(a > end2){
+		while(b <= end){
+			temp[i] = nums[b];
+			b += 1; 
+			i += 1; 
+		}
+	}
+
+	if(b > end){
+		while(a <= end2){
+			temp[i] = nums[a];
+			a += 1; 
+			i += 1; 
+		}
+	}
+
+	for(int i = 0; i < n; i++){
+		nums[aOG + i] = temp[i];
+	}
+
+}
+
+void mergeSort(int temp[], int nums[], int start, int end){
+	if(end - start > 0){ //has at least 2 elements
+		int mid = (end + start)/2; 
+		mergeSort(temp, nums, start, mid);
+		mergeSort(temp, nums, mid + 1, end);
+		merge(temp, nums, start, mid + 1, end);
+	}
 }
 
 int main(){

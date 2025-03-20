@@ -1,6 +1,6 @@
 #include <iostream> 
 
-void quickSort(int nums[], int start, int end){
+/*void quickSort(int nums[], int start, int end){
     if(end - start < 0){
         return;
     }
@@ -32,6 +32,46 @@ void quickSort(int nums[], int start, int end){
 	quickSort(nums, lo + 1, end); 
 	
 	
+}*/
+
+void quickSort(int nums[], int start, int end){
+
+    //base case, if we have 0 or 1 elements
+    if(start >= end){
+        return;
+    }
+
+    int pivot = nums[end];
+    int lo = start;
+    int hi = end - 1; 
+
+
+    while(lo <= hi){
+
+        //find position for lo that needs swap
+        while(lo <= hi && nums[lo] <= pivot){
+            lo += 1; 
+        }
+
+        while(lo <= hi && nums[hi] >= pivot){
+            hi -= 1; 
+        }
+
+        if(lo < hi){
+            int temp = nums[hi];
+            nums[hi] = nums[lo];
+            nums[lo] = temp;
+        }
+
+    }
+
+    int temp = nums[lo];
+    nums[lo] = pivot;
+    nums[end] = temp;
+
+    quickSort(nums, start, lo - 1);
+    quickSort(nums, lo + 1, end);
+    
 }
 
 int main(){
