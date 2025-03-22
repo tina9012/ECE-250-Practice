@@ -60,7 +60,7 @@ void merge(int temp[], int nums[], int a, int b, int end){
 	int aOG = a; 
 
 	while(a <= end2 && b <= end){
-		if(nums[a] < nums[b]){
+		if(nums[a] <= nums[b]){ //ensures stability
 			temp[i] = nums[a]; 
 			a += 1; 
 		} else {

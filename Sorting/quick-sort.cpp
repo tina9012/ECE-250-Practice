@@ -67,6 +67,7 @@ void quickSort(int nums[], int start, int end){
     int temp = nums[lo];
     nums[lo] = pivot;
     nums[end] = temp;
+    
     quickSort(nums, start, lo - 1);
     quickSort(nums, lo + 1, end);
 }
