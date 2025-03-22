@@ -1,67 +1,17 @@
 #include <iostream> 
 
-/*void merge(int temp[], int nums[], int a, int b, int end){
-	int originalA = a; 
-	int end2 = b - 1; 
-	int i = 0; 
-	
-	while(a <= end2 && b <= end){
-		if(nums[a] <= nums[b]){
-			temp[i] = nums[a]; 
-			a += 1; 
-		} else {
-			temp[i] = nums[b];
-			b += 1; 
-		}
-		i += 1; 
-	}
-	
-	if(a > end2){
-		while(b <= end){
-			temp[i] = nums[b];
-			b += 1; 
-			i += 1; 
-		}
-	}
-	
-	if(b > end){
-		while(a <= end2){
-			temp[i] = nums[a];
-			a += 1; 
-			i += 1; 
-		}
-	}
-	
-	for(int i = 0; i < ((end - a) + 1); i++){
-		nums[i + originalA] = temp[i];
-	}
-	
-}
-
-void mergeSort(int temp[], int nums[], int start, int end){
-
-    if((end - start) > 0){
-        int mid = (start + end)/2; 
-        mergeSort(temp, nums, start, mid); 
-        mergeSort(temp, nums, mid + 1, end); 
-        merge(temp, nums, start, mid + 1, end); 
-    }
-	
-}*/
-
-
-//continue to split the array down its middle and process the left and right subarrays until you have a subarray that is 
-//only containing 2 elements
+//idea: have a mergeSort and merge function that repeatedly splits up the array until it is size 2
 
 void merge(int temp[], int nums[], int a, int b, int end){
-	int n = (end - a) + 1; //add 1 since a and b are zero indexed 
+
 	int end2 = b - 1; 
-	int i = 0; //index in temp
+	int n = (end - a) + 1; //ending index of temp
+	int i = 0; 
 	int aOG = a; 
 
 	while(a <= end2 && b <= end){
-		if(nums[a] <= nums[b]){ //ensures stability
-			temp[i] = nums[a]; 
+		if(nums[a] <= nums[b]){
+			temp[i] = nums[a];
 			a += 1; 
 		} else {
 			temp[i] = nums[b];
@@ -73,30 +23,57 @@ void merge(int temp[], int nums[], int a, int b, int end){
 	if(a > end2){
 		while(b <= end){
 			temp[i] = nums[b];
-			b += 1;
-			i += 1;
+			b += 1; 
+			i += 1; 
 		}
 	}
 
 	if(b > end){
 		while(a <= end2){
 			temp[i] = nums[a];
-			a += 1;
-			i += 1;
+			a += 1; 
+			i += 1; 
 		}
 	}
 
 	for(int i = 0; i < n; i++){
 		nums[aOG + i] = temp[i];
 	}
+
 }
 
 void mergeSort(int temp[], int nums[], int start, int end){
-	if(end > start){
-		int mid = (start + end)/2;
-		mergeSort(temp, nums, start, mid);
-		mergeSort(temp, nums, mid + 1, end);
-		merge(temp, nums, start, mid + 1, end);
+
+	if(start < end){ //ensures we have at least an array of size 2
+		int mid = (start + end)/2; 
+		mergeSort(temp, nums, start, mid); 
+		mergeSort(temp, nums, mid + 1, end); 
+		merge(temp, nums, start, mid + 1, end); 
+	}
+
+}
+
+/* sizeA/B is the number of elements in array A/B */
+void merge(int * a, int * b, int sizeA, int sizeB){
+	int indexA = sizeA - 1;
+	int indexB = sizeB - 1; 
+	int mergeIndex = sizeA + sizeB - 1;
+
+	while(indexA >= 0 && indexB >= 0){
+		if(a[indexA] > a[indexB]){
+			a[mergeIndex] = a[indexA];
+			indexA -= 1;
+		} else {
+			a[mergeIndex] = b[indexB];
+			indexB -= 1; 
+		}
+		mergeIndex -= 1; 
+	}
+
+	while(indexB >= 0){
+		a[mergeIndex] = b[indexB];
+		indexB -= 1;
+		mergeIndex -= 1;
 	}
 }
 

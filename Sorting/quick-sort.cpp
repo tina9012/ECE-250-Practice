@@ -1,54 +1,20 @@
 #include <iostream> 
 
-/*void quickSort(int nums[], int start, int end){
-    if(end - start < 0){
-        return;
-    }
-	int pivot = nums[end];
-	int lo = start; 
-	int hi = end - 1; 
-	
-	while(lo <= hi){
-		while(lo <= hi && nums[lo] <= pivot){
-			lo += 1; 
-		}
-		
-		while(lo <= hi && nums[hi] >= pivot){
-			hi -= 1; 
-		}
-		
-		if(lo < hi){
-			int temp = nums[lo]; 
-			nums[lo] = nums[hi]; 
-			nums[hi] = temp; 
-		}		
-	}
-	
-	int temp = nums[lo]; 
-	nums[lo] = pivot; 
-	nums[end] = temp; 
-	
-	quickSort(nums, start, lo - 1); 
-	quickSort(nums, lo + 1, end); 
-	
-	
-}*/
-
-//this is the one where you keep selecting a pivot and sort the pivot every time
+//keep picking a pivot and sort by pivot 
 
 void quickSort(int nums[], int start, int end){
-    //waste of a stack call to sort a single element
-    if(start >= end){
+
+    if(end <= start){ //ensure we always have at least 1 element
         return;
     }
-    int pivot = nums[end]; //choose the final element
-    int lo = start;
+
+    int pivot = nums[end];
+    int lo = start; 
     int hi = end - 1; 
 
     while(lo <= hi){
-
         while(lo <= hi && nums[lo] <= pivot){
-            lo += 1;
+            lo += 1; 
         }
 
         while(lo <= hi && nums[hi] >= pivot){
@@ -60,16 +26,14 @@ void quickSort(int nums[], int start, int end){
             nums[hi] = nums[lo];
             nums[lo] = temp; 
         }
-        
     }
 
-    //swap pivot with lo (one past hi)
     int temp = nums[lo];
     nums[lo] = pivot;
     nums[end] = temp;
-    
+
     quickSort(nums, start, lo - 1);
-    quickSort(nums, lo + 1, end);
+    quickSort(nums, lo + 1, end); 
 }
 
 int main(){

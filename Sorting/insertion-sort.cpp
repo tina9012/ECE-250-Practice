@@ -17,23 +17,11 @@ int main(){
 
     int n = 100;
 
-    /*for(int i = 1; i < n; i++){
-        int key = nums[i]; //the current element we need to insert
-        int j = i - 1; //index for the sorted array 
-        
-        while(j >= 0 && nums[j] > key){
-            nums[j + 1] = nums[j]; //shift elements forward
-            j -= 1; 
-        }
-        
-        nums[j + 1] = key; 
-    }*/
-
-    //split between sorted and unsorted, repeatedly find the correct spot for insertion
-    for(int i = 1; i < n; i++){
+    //keep finding where the current element fits into the rest of the array
+    for(int i = 1; i < n; i++){ //go up to n, we need to insert every element
         int key = nums[i];
         int k = i - 1; 
-        while(k >= 0 && key < nums[k]){
+        while(k >= 0 && nums[k] > key){
             nums[k + 1] = nums[k];
             k -= 1; 
         }

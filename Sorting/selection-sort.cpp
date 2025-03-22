@@ -17,28 +17,16 @@ int main(){
 
     int n = 100;
 
-    /*for(int i = 0; i < n - 1; i++){
-        int currentMin = i;
-        for(int k = i + 1; k < n; k++){
+    //select the smallest element, swap with the current item
+    for(int i = 0; i < n - 1; i++){ //don't need to check last item
+        int currentMin = i; 
+        for(int k = i + 1; k < n; k++){ //need to check all remaining elements, go up to n
             if(nums[k] < nums[currentMin]){
-                currentMin = k;
+                currentMin = k; 
             }
         }
         int temp = nums[currentMin];
         nums[currentMin] = nums[i];
-        nums[i] = temp;
-    }*/
-
-    //select the minimum element each time and swap with the front of unsorted list
-    for(int i = 0; i < n - 1; i++){
-        int min = i;
-        for(int k = i + 1; k < n; k++){
-            if(nums[k] < nums[min]){
-                min = k; 
-            }
-        }
-        int temp = nums[min];
-        nums[min] = nums[i];
         nums[i] = temp;
     }
 

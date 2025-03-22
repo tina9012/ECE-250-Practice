@@ -17,19 +17,16 @@ int main(){
 
     int n = 100;
 
-    /*for(int i = 0; i < n - 1; i++){
-        for(int k = 0; k < n - i - 1; k++){
-            if(nums[k] > nums[k + 1]){
-                int temp = nums[k];
-                nums[k] = nums[k + 1];
-                nums[k + 1] = temp;
+    //sort from the end, we get the largest element by repeatedly making swaps
+    for(int i = 0; i < n - 1; i++){
+        for(int k = 0; k < n - i - 1; k++){ //last i items are already sorted
+            if(nums[k + 1] < nums[k]){
+                int temp = nums[k + 1];
+                nums[k + 1] = nums[k];
+                nums[k] = temp;
             }
         }
-    }*/
-
-
-
-    //sort from the end, we get the largest element by repeatedly making swaps
+    }
 
     for(int i = 0; i < n; i++){
         std::cout << nums[i] << " ";
